@@ -1,5 +1,6 @@
 package com.subria.fi;
 
+import com.subria.fi.exceptions.SalaryManagementException;
 import com.subria.fi.models.Bonus;
 import com.subria.fi.models.Person;
 import com.subria.fi.models.Salary;
@@ -22,6 +23,10 @@ public class Main {
         Person person= new Person(1, "korim", "khan", "Developer", new ArrayList<>());
         person.setSalaryToList(salary);
 
-        System.out.print("Total Monthly salary after tax reduction: "+ SalaryCalculationHelper.getTotalMonthlySalary(person,salary));
+        try {
+            System.out.print("Total Monthly salary after tax reduction: "+ SalaryCalculationHelper.getTotalMonthlySalary(person,salary));
+        } catch (SalaryManagementException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
